@@ -3,13 +3,13 @@
 // Exsercise 1
 
 function firstFunc(arr, secondFunc) {
-	let res = [];
+	res = [];
 
 	for (let i = 0; i < arr.length; i++) {
 		res.push(secondFunc(arr[i]));
 	}
 
-	return res;
+	return answer = res.join(', ');
 }
 
 function handler1(el) {
@@ -34,22 +34,17 @@ function handler4(el) {
 	return el.split('').reverse().join('');
 }
 
+let res;
+let answer;
 let question = firstFunc([ 'my', 'name', 'is', 'Trinity' ], handler1);
-question = question.join('');
-
-let numbers = firstFunc([ 10, 20, 30 ], handler2);
-numbers = numbers.join(' ');
-
+console.log('New value: ', question.replace(/, /gi, ''));
+let numer = firstFunc([ 10, 20, 30 ], handler2);
+console.log('New value: ', numer.replace(/,/gi, ''));
 let users = firstFunc([ { age: 45, name: 'Jhon' }, { age: 20, name: 'Aaron' } ], handler3);
-users = users.join(', ');
-
+console.log('New value: ', users);
 let reverse = firstFunc([ 'abc', '123' ], handler4);
-reverse = reverse.join(', ');
+console.log('New value: ', reverse);
 
-// console.log('New value: ', question);
-// console.log('New value: ', numbers);
-// console.log('New value: ', users);
-// console.log('New value: ', reverse);
 
 // Exsercise 2
 // Variant 1
@@ -82,40 +77,39 @@ function analogEvery(array, cb) {
 }
 
 function cb(element, index, array) {
-	if (element > barrier && res != false) {
-		res = true;
+	if (element > barrier && resu != false) {
+		resu = true;
 	} else {
-		res = false;
+		resu = false;
 	}
 }
 
 const barrier = 5;
-let res;
+let resu;
 analogEvery([ 5, 7, 8, 9, 10 ], cb);
-console.log(res);
+console.log(resu);
 
 // Деструктурируюшее присваивание
 // Exsercise 1
 
-function restructur() {
-	let first = name1;
+function restructur([ element1, ...rest ]) {
+	let first = element1;
 	let second = rest;
 	return {
-		first: first,
-		second: second
+		first,
+		second
 	};
 }
 
-const [ name1, ...rest ] = [ 'Marina', 'b', 'c', 'd', 'e', 'f' ];
-restructur();
+console.log(restructur([ 'Marina', 'b', 'c', 'd', 'e', 'f' ]));
 
 // Exsercise 2
 
 function getInfo() {
-	if (name === '') {
+	if (!brand || brand === '') {
 		console.log('Underfined');
 	} else {
-		console.log('Name: ', name);
+		console.log('Name: ', brand);
 		console.log('Partners: ', partners[0], partners[1]);
 	}
 }
@@ -125,19 +119,20 @@ const organisation = {
 	info: { employees: [ 'Vlad', 'Olga' ], partners: [ 'Microsoft', 'Facebook', 'Xing' ] }
 };
 
-const { name, info: { employees, partners } } = organisation;
+const { name: brand, info: { employees, partners } } = organisation;
 getInfo();
+
 
 // Функции стрелки
 // Exsercise 1
 
-const sum = () => {
-	const params = other;
+const sum = (...other) => {
+		params = other;
 	if (!params.length) return 0;
 
 	return params.reduce((prev, next) => prev + next);
 };
 
-const [ ...other ] = [ 3, 3, 3, 3 ];
-sum();
-console.log(sum());
+let params;
+console.log(sum(1, 2, 3));
+
